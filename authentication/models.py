@@ -7,5 +7,5 @@ class MyUser(models.Model):
 
     profile_picture = models.ImageField()
 
-
-
+    def __str__(self):
+        return self.user.username

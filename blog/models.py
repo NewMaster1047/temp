@@ -15,6 +15,11 @@ class Post(BaseModel):
     image = models.ImageField(upload_to='post_image/')
     description = models.CharField(max_length=500, null=True, blank=True)
 
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.author.user.username
+
 
 class Comment(BaseModel):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='comment_author')
@@ -30,5 +35,6 @@ class LikePost(BaseModel):
 class FollowUser(BaseModel):
     follower = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='follower')
     following = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='following')
+
 
 
